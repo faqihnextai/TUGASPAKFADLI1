@@ -2,249 +2,259 @@
 <?= $this->section('main') ?>
 
 <style>
-	/* BACKGROUND CREAM */
-	body {
-		background: #fff7e6;
-		/* soft cream */
-		margin: 0;
-		font-family: "Open Sans", sans-serif;
-	}
+    body {
+        background: #f1f5f9;
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+    }
 
-	/* Center Wrapper */
-	.content-body {
-		min-height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
+    .content-body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
 
-	/* CARD STYLE */
-	.card-login {
-		width: 380px;
-		background: #ffffff;
-		padding: 2em 2em 3em;
-		border-radius: 12px;
-		box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.10);
-		animation: fadeIn .4s ease;
-	}
+    .auth-card {
+        max-width: 800px;
+        width: 100%;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        display: flex;
+        overflow: hidden;
+        animation: fadeIn .6s ease;
+    }
 
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-			transform: translateY(10px);
-		}
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
+    .sign-in-panel {
+        flex: 1;
+        padding: 2.5em;
+        min-width: 300px;
+    }
 
-	.logo-wrapper {
-		text-align: center;
-		margin-bottom: 1.5em;
-	}
+    .text-title {
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        color: #333;
+    }
 
-	.logo-wrapper img {
-		width: 85px;
-		height: 85px;
-		border-radius: 12px;
-	}
+    /* ===== SOCIAL ICONS ===== */
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 1.5em;
+    }
 
-	/* Title */
-	.text-title {
-		text-align: center;
-		font-size: 1.3rem;
-		font-weight: 700;
-		margin-bottom: 1.3em;
-	}
+    .social-icon {
+        width: 38px;
+        height: 38px;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: .2s;
+        background: #fff;
+    }
 
-	/* Input Style */
-	.input {
-		border: 1px solid #ddd;
-		padding: .7em 12px;
-		width: 100%;
-		background: #fff;
-		border-radius: 4px;
-		outline: none;
-		font-size: 15px;
-		margin-bottom: 1em;
-		transition: .2s;
-	}
+    .social-icon:hover {
+        background: #f5f5f5;
+        border-color: #aaa;
+    }
 
-	.input:focus {
-		border-color: #ff9d48;
-		box-shadow: 0 0 5px rgba(255, 159, 72, .6);
-	}
+    .social-icon img {
+        width: 60%;
+        height: 60%;
+        object-fit: contain;
+    }
 
-	/* Remember section */
-	.field-group-inline {
-		display: flex;
-		justify-content: space-between;
-		font-size: 14px;
-		margin-bottom: 1.3em;
-	}
+    /* Separator */
+    .separator-wrapper { margin: 1.5em 0; position: relative; text-align: center; }
+    .separator::before {
+        content: "";
+        height: 1px;
+        background: #eee;
+        width: 100%;
+        position: absolute;
+        top: 50%; left: 0;
+    }
+    .separator span {
+        background: #fff;
+        padding: 0 10px;
+        color: #999;
+        font-size: 13px;
+        position: relative;
+    }
 
-	/* Button */
-	.btn-submit {
-		background: #e86c2f;
-		border: 0;
-		width: 100%;
-		padding: .8em;
-		color: #fff;
-		font-size: 16px;
-		border-radius: 4px;
-		cursor: pointer;
-		font-weight: 700;
-		transition: .2s;
-	}
+    /* Inputs */
+    .input {
+        border: 1px solid #ddd;
+        padding: .9em 15px;
+        width: 100%;
+        border-radius: 8px;
+        font-size: 16px;
+        margin-bottom: 1.3em;
+        transition: .2s;
+    }
 
-	.btn-submit:hover {
-		background: #ff7e39;
-	}
+    .input:focus {
+        border-color: #5e35b1;
+        box-shadow: 0 0 5px rgba(94, 53, 177, 0.4);
+    }
 
-	/* Separator */
-	.separator-wrapper {
-		position: relative;
-		margin: 1.8em 0;
-	}
+    .input.is-invalid { border-color: #f44336; }
 
-	.separator::before {
-		content: "";
-		height: 1px;
-		background: #ddd;
-		width: 100%;
-		position: absolute;
-		top: 50%;
-	}
+    .link-forgot {
+        display: block;
+        text-align: right;
+        margin-top: -10px;
+        margin-bottom: 2em;
+        font-size: 14px;
+        color: #5e35b1;
+        font-weight: 600;
+    }
 
-	.separator span {
-		position: relative;
-		background: #fff;
-		padding: 0 1em;
-		color: #999;
-		font-size: 12px;
-	}
+    .btn-submit {
+        background: #5e35b1;
+        border: 0;
+        width: 100%;
+        padding: .8em;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+        transition: .2s;
+    }
 
-	/* Social login */
-	.link-social-login {
-		display: block;
-		padding: .7em;
-		border: 1px solid #ddd;
-		background: #fafafa;
-		margin-bottom: .5em;
-		border-radius: 4px;
-		font-size: 15px;
-		text-align: center;
-		font-weight: 600;
-		color: #333;
-		position: relative;
-	}
+    .btn-submit:hover {
+        background: #7953b7;
+        box-shadow: 0 5px 15px rgba(94, 53, 177, 0.3);
+    }
 
-	.link-social-login img {
-		position: absolute;
-		left: 16px;
-		top: 50%;
-		transform: translateY(-50%);
-		width: 22px;
-	}
+    .error-box {
+        background: #ffecb3;
+        padding: 12px;
+        margin-top: 20px;
+        text-align: center;
+        border: 1px solid #ffcc80;
+        border-radius: 8px;
+        color: #e65100;
+        font-weight: 600;
+        font-size: 14px;
+    }
 
-	/* Small text */
-	.text-register {
-		text-align: center;
-		font-size: 14px;
-		margin-bottom: 1.2em;
-	}
+    .sign-up-panel {
+        flex: 1;
+        padding: 2.5em;
+        background: linear-gradient(135deg, #7953b7, #5e35b1);
+        color: #fff;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 300px;
+    }
 
-	.text-register a {
-		color: #d85f2a;
-		font-weight: 600;
-	}
+    .sign-up-panel h2 {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 0.5em;
+    }
+
+    .btn-signup {
+        background: #fff;
+        border: 2px solid #fff;
+        width: 60%;
+        margin: 0 auto;
+        padding: .8em;
+        color: #5e35b1;
+        border-radius: 8px;
+        font-weight: 700;
+        transition: .2s;
+    }
+
+    .btn-signup:hover { background: #e0e0e0; }
+
+    @media (max-width: 768px) {
+        .auth-card { flex-direction: column; max-width: 400px; }
+        .sign-up-panel { border-radius: 0 0 20px 20px; }
+    }
 </style>
 
-
-<!-- ========================================= -->
-<!--                 PAGE START                -->
-<!-- ========================================= -->
+<!-- ================================ PAGE ================================ -->
 
 <div class="content-body">
-	<div class="card-login">
+    <div class="auth-card">
 
-		<div class="logo-wrapper">
-			<img src="<?= base_url('logo.jpg') ?>" alt="Logo">
-		</div>
+        <!-- LEFT PANEL -->
+        <div class="sign-in-panel">
+            <h1 class="text-title">Sign In</h1>
 
+            <div class="social-icons">
+                <!-- Google -->
+               <a href="<?= site_url('google_login_start') ?>" class="social-icon">
+    <img src="https://image.similarpng.com/file/similarpng/very-thumbnail/2020/06/Logo-google-icon-PNG.png">
+</a>
 
-		<h1 class="text-title">Masuk ke Akun</h1>
+<a href="<?= site_url('facebook_login_start') ?>" class="social-icon">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFAw5xjAZJ66P77RqKI_XspB-aQ06RKUD0pQ&s">
+</a>
+            </div>
 
-		<div class="text-register">
-			Belum punya akun? <a href="<?= url_to('register') ?>">Daftar di sini</a>
-		</div>
+            <div class="separator-wrapper">
+                <div class="separator"><span>or use your email password</span></div>
+            </div>
 
-		<form action="<?= url_to('login') ?>" method="post">
-			<?= csrf_field() ?>
+            <form action="<?= url_to('login') ?>" method="post">
+                <?= csrf_field() ?>
 
-			<!-- LOGIN -->
-			<input class="input <?php if (session('errors.login')): ?>is-invalid<?php endif ?>"
-				type="<?= $config->validFields === ['email'] ? 'email' : 'text' ?>" name="login"
-				placeholder="<?= $config->validFields === ['email'] ? lang('Auth.email') : lang('Auth.emailOrUsername') ?>" />
+                <input
+                    class="input <?= session('errors.login') ? 'is-invalid' : '' ?>"
+                    type="<?= $config->validFields === ['email'] ? 'email' : 'text' ?>"
+                    name="login"
+                    placeholder="Email"
+                />
 
-			<!-- PASSWORD -->
-			<input class="input <?php if (session('errors.password')): ?>is-invalid<?php endif ?>"
-				type="password" name="password" placeholder="<?= lang('Auth.password') ?>" />
+                <input
+                    class="input <?= session('errors.password') ? 'is-invalid' : '' ?>"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                />
 
-			<!-- REMEMBER -->
-			<?php if ($config->allowRemembering): ?>
-				<div class="field-group-inline">
-					<label>
-						<input type="checkbox" name="remember" <?php if (old('remember')): ?>checked<?php endif ?> />
-						Ingat saya
-					</label>
+                <?php if ($config->activeResetter): ?>
+                    <a href="<?= url_to('forgot') ?>" class="link-forgot">Forgot Your Password?</a>
+                <?php endif; ?>
 
-					<?php if ($config->activeResetter): ?>
-						<a href="<?= url_to('forgot') ?>">Lupa Password?</a>
-					<?php endif; ?>
-				</div>
-			<?php endif; ?>
+                <button class="btn-submit" type="submit">SIGN IN</button>
+            </form>
 
-			<button class="btn-submit" type="submit"><?= lang('Auth.loginAction') ?></button>
-		</form>
-		<?php if (session()->getFlashdata('error')): ?>
-			<div style="
-    background:#ffe7e7;
-    padding:12px;
-    margin-top:12px;
-    text-align:center;
-    border:1px solid #ffb3b3;
-    border-radius:6px;
-    color:#b50000;
-    font-weight:600;
-  ">
-				<?= session()->getFlashdata('error') ?>
+            <?php if (session()->getFlashdata('error')): ?>
+                <div class="error-box">
+                    <?= session()->getFlashdata('error') ?>
+                </div>
+            <?php endif; ?>
 
-				<?php if (! empty($config->activeResetter)): ?>
-					<div style="margin-top:8px;font-weight:600;">
-						<a href="<?= url_to('forgot') ?>" style="color:#b50000;text-decoration:underline;">Lupa password? Pulihkan akun</a>
-					</div>
-				<?php endif; ?>
-			</div>
-		<?php endif; ?>
+        </div>
 
+        <!-- RIGHT PANEL -->
+        <div class="sign-up-panel">
+            <h2>Hello, Friend!</h2>
+            <p>Register to access all features</p>
+            <a href="<?= url_to('register') ?>" class="btn-signup">SIGN UP</a>
+        </div>
 
-		<!-- SEPARATOR -->
-		<div class="separator-wrapper">
-			<div class="separator"><span>ATAU</span></div>
-		</div>
-
-		<!-- SOCIAL LOGIN -->
-		<a href="#" class="link-social-login">
-			<img src="<?= base_url('fb.png') ?>"> Login dengan Facebook
-		</a>
-		<a href="auth/google" class="link-social-login">
-			<img src='<?= base_url("google.png") ?>'> Login dengan Google
-		</a>
-
-	</div>
+    </div>
 </div>
 
 <?= $this->endSection() ?>
